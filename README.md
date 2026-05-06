@@ -1,6 +1,6 @@
-# 🔷 LPBF Relative Density Prediction using Gradient Boosting
+#  LPBF Relative Density Prediction using Gradient Boosting
 
-## 📌 Project Overview
+##  Project Overview
 
 This project develops a **Machine Learning model** to predict **Relative Density (%)** in **Laser Powder Bed Fusion (LPBF)** using process parameters:
 
@@ -11,7 +11,7 @@ The model uses **Gradient Boosting Regression** with **hyperparameter tuning** a
 
 ---
 
-## ⚙️ Workflow Summary
+##  Workflow Summary
 
 ```
 Data → Model → GridSearchCV → Best Model → Cross-Validation → Metrics → Prediction → Visualization
@@ -19,9 +19,9 @@ Data → Model → GridSearchCV → Best Model → Cross-Validation → Metrics 
 
 ---
 
-## 📂 Code Explanation
+##  Code Explanation
 
-### 1️⃣ Load Dataset
+###  Load Dataset
 
 ```python
 df = pd.read_csv("rp_lpbf_dataset.csv")
@@ -37,7 +37,7 @@ y = df["Relative_Density_%"]
 
 ---
 
-### 2️⃣ Define Model
+###  Define Model
 
 ```python
 gbr = GradientBoostingRegressor(random_state=42)
@@ -48,7 +48,7 @@ gbr = GradientBoostingRegressor(random_state=42)
 
 ---
 
-### 3️⃣ Define Hyperparameter Grid
+###  Define Hyperparameter Grid
 
 ```python
 param_grid = {
@@ -64,7 +64,7 @@ param_grid = {
 
 ---
 
-### 4️⃣ Cross-Validation Strategy
+###  Cross-Validation Strategy
 
 ```python
 cv = KFold(n_splits=5, shuffle=True, random_state=42)
@@ -75,7 +75,7 @@ cv = KFold(n_splits=5, shuffle=True, random_state=42)
 
 ---
 
-### 5️⃣ GridSearchCV (Hyperparameter Tuning + CV)
+###  GridSearchCV (Hyperparameter Tuning + CV)
 
 ```python
 grid = GridSearchCV(
@@ -90,7 +90,7 @@ grid = GridSearchCV(
 grid.fit(X, y)
 ```
 
-🔍 What happens:
+ What happens:
 
 * Tries all parameter combinations
 * Performs cross-validation for each
@@ -99,7 +99,7 @@ grid.fit(X, y)
 
 ---
 
-### 6️⃣ Best Model Selection
+###  Best Model Selection
 
 ```python
 best_model = grid.best_estimator_
@@ -109,7 +109,7 @@ best_model = grid.best_estimator_
 
 ---
 
-### 7️⃣ Cross-Validated Predictions
+### Cross-Validated Predictions
 
 ```python
 y_pred_cv = cross_val_predict(best_model, X, y, cv=cv)
@@ -121,7 +121,7 @@ y_pred_cv = cross_val_predict(best_model, X, y, cv=cv)
 
 ---
 
-### 8️⃣ Performance Metrics
+### Performance Metrics
 
 ```python
 r2 = r2_score(y, y_pred_cv)
@@ -130,7 +130,7 @@ mse = mean_squared_error(y, y_pred_cv)
 rmse = np.sqrt(mse)
 ```
 
-📊 Metrics used:
+Metrics used:
 
 * **R² Score** → Model accuracy
 * **MAE** → Average error
@@ -139,7 +139,7 @@ rmse = np.sqrt(mse)
 
 ---
 
-### 9️⃣ Prediction for New Input
+###  Prediction for New Input
 
 ```python
 new_input = pd.DataFrame({
@@ -155,7 +155,7 @@ prediction = best_model.predict(new_input)
 
 ---
 
-### 🔟 Visualization (Actual vs Predicted)
+### Visualization (Actual vs Predicted)
 
 ```python
 plt.scatter(y, y_pred_cv)
@@ -167,14 +167,14 @@ Plot includes:
 * Ideal line (x = y)
 * Deviation lines (error visualization)
 
-📌 Purpose:
+ Purpose:
 
 * Evaluate model accuracy visually
 * Check closeness to ideal prediction
 
 ---
 
-## 🎯 Key Concepts Used
+##  Key Concepts Used
 
 * Gradient Boosting Regression
 * Hyperparameter Tuning (GridSearchCV)
@@ -185,7 +185,7 @@ Plot includes:
 
 ---
 
-## ⚠️ Important Notes
+## Important Notes
 
 * Cross-validation ensures **realistic performance**
 * Final model is trained using **full dataset**
@@ -194,7 +194,7 @@ Plot includes:
 
 ---
 
-## 🚀 Possible Improvements
+##  Possible Improvements
 
 * Add more features:
 
@@ -211,7 +211,7 @@ Plot includes:
 
 ---
 
-## 📌 Conclusion
+##  Conclusion
 
 This project demonstrates a robust ML pipeline for LPBF parameter prediction using:
 
