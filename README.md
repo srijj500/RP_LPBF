@@ -202,12 +202,10 @@ Plot includes:
   * Hatch spacing
   * Layer thickness
 
-* Try advanced models:
+* Try other models:
 
   * Random Forest
   * XGBoost
-
-* Perform feature engineering for better accuracy
 
 ---
 
